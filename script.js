@@ -20,25 +20,26 @@ function playRound(userChoice, compChoice){
     console.log(`Computer choice: ${compChoice}`)
 
     if (userChoice === compChoice){
-        return "Its a tie!";//If the choices are equal print tie
+        console.log("Its a tie!") //If the choices are equal print tie
+        startGame(); //Starts the game again
     }
         else if (userChoice === "rock" && compChoice ==="scissors"){//Rock vs scissors
-            return "You Win!";
+            return("You Win!");
         }
         else if (userChoice === "scissors" && compChoice === "rock"){//scissors vs rock
-            return "You loose!";
+           return("You loose!");
         }
         else if (userChoice === "paper" && compChoice ==="rock"){//paper vs rock
-            return "You Win!";
+           return("You Win!");
         }
         else if (userChoice === "rock" && compChoice === "paper"){//rock vs paper
-            return "You loose!";
+            return("You loose!");
         }
         else if (userChoice === "scissors" && compChoice ==="paper"){//scissors vs paper
-            return "You Win!";
+            return("You Win!");
         }
         else if (userChoice === "paper" && compChoice === "scissors"){//paper vs scissors
-            return "You loose!";
+            return("You loose!");
         }
     }
 
@@ -47,8 +48,8 @@ function playRound(userChoice, compChoice){
 function startGame(){
     const userChoice = prompt("Choose between rock, paper, scissors: ").toLowerCase();//Prompts user for input
     const compChoice = computerChoice();//Assigns constant to the result of the function
-    const result = playRound(userChoice, compChoice); //Gets the result of the round
-    console.log(result); //Outputs the result
+    const result = playRound(userChoice, compChoice) //Gets the result of the round
+    console.log(result) //Outputs the result of the round
 }
 
 startGame();
