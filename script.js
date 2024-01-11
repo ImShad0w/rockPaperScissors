@@ -53,3 +53,7 @@ function startGame(){
 }
 
 startGame();
+
+
+//PENDING
+//Add a for loop to play the desired number of times
