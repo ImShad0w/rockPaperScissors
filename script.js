@@ -7,6 +7,29 @@
 //Create a function that will strat the game by prompting us to get the result
 
 //Computer chooses a value from the array based on the arrays length and outputs the result
+
+window.onload = function() {
+    const container = document.createElement("div");
+    container.id = "container";
+    const parent = document.querySelector("body");
+    parent.appendChild(container);
+    const butt1 = document.createElement("button");
+    butt1.textContent = "Rock";
+    const butt2 = document.createElement("button");
+    butt2.textContent = "Paper";
+    const butt3 = document.createElement("button");
+    butt3.textContent = "Scissors";
+    container.appendChild(butt1);
+    container.appendChild(butt2);
+    container.appendChild(butt3);
+    
+  butt1.addEventListener("click"){
+    userChoice = "rock";
+  }
+}
+
+
+
 function computerChoice(){
     const choices = ["rock", "paper", "scissors"];
     const randomChoice = Math.floor(Math.random() * choices.length);
@@ -46,7 +69,7 @@ function playRound(userChoice, compChoice){
 //Starts game
 
 function startGame(){
-    const userChoice = prompt("Choose between rock, paper, scissors: ").toLowerCase();//Prompts user for input
+    let userChoice;//Prompts user for input
     const compChoice = computerChoice();//Assigns constant to the result of the function
     const result = playRound(userChoice, compChoice) //Gets the result of the round
     console.log(result) //Outputs the result of the round
@@ -55,5 +78,6 @@ function startGame(){
 startGame();
 
 
-//PENDING
-//Add a for loop to play the desired number of times
+//WORKING ON
+//Create ui for the game
+
