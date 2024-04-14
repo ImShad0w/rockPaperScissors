@@ -8,6 +8,8 @@
 
 let userChoice;
 let compChoice = computerChoice();
+let userScore = 0;
+let computerScore = 0;
 
 function computerChoice(){
   const choices = ["rock", "paper", "scissors"];
@@ -20,22 +22,27 @@ function playRound(userChoice, compChoice){
   console.log(`Computer choice: ${compChoice}`)
   if (userChoice === compChoice){
     console.log("It's a tie")
+  } 
+  else if (userChoice === "rock" && compChoice === "scissors"){
+    userScore =+ 1;
   }
-    else if(userChoice === "rock" && compChoice ==="scissors"){
-
-    }
+  else if (userChoice ==="scissors" && compChoice ==="rock"){
+    computerScore =+ 1;
   }
+  else if (userChoice === "paper" && compChoice ==="rock"){
+    userScore =+ 1;
+  }
+  else if (userChoice === "rock" && compChoice === "paper"){
+    comoputerScore =+ 1;
+  }
+  else if (userChoice === "scissors" && compChoice === "paper"){
+    userScore =+ 1;
+  }
+  else if (userChoice === "paper" && compChoice ==="scissors"){
+    computerScore =+ 1;
+  }
+  
 }
-
-
-
-
-
-
-
-
-
-
 window.onload = function(){
 
   //Container for keeping the buttons
@@ -59,8 +66,28 @@ window.onload = function(){
 
   //Adds event listeners to the buttons
   rock.addEventListener("click", function(){
-  userChoice = "rock";
-  playRound(userChoice, compChoice)
+    userChoice = "rock";
+    compChoice = computerChoice();
+    playRound(userChoice, compChoice);
+  });
+  paper.addEventListener("click", function(){
+    userChoice = "paper";
+    compChoice = computerChoice();
+    playRound(userChoice, compChoice);
+  });
+  scissors.addEventListener("click", function(){
+    userChoice = "scissors";
+    compChoice = computerChoice();
+    playRound(userChoice, compChoice);
+  });
+
+  //Add logic and visible score
+  //PENDING
+  function game(){
+    while userScore != 5 || computerScore != 5{
+    const scoreboard = document.querySelector("div")
+
+    }
   }
 }
 
