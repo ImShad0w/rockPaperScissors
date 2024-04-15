@@ -4,7 +4,7 @@
 //Create UI for the RPS game
 //
 //
-
+//
 
 let userChoice;
 let compChoice = computerChoice();
@@ -50,6 +50,10 @@ window.onload = function(){
   container.id = "container";
   const body = document.querySelector("body");
   body.appendChild(container);
+  const scoreboard = document.createElement("div")
+  scoreboard.id = "scoreboard";
+  body.appendChild(scoreboard)
+
 
   //Buttons for the ui/playRound
   const rock = document.createElement("button");
@@ -60,33 +64,43 @@ window.onload = function(){
   scissors.textContent = "Scissors";
 
   //Adds the buttons to the DOM
-  body.appendChild(rock);
-  body.appendChild(paper);
-  body.appendChild(scissors);
+  container.appendChild(rock);
+  container.appendChild(paper);
+  container.appendChild(scissors);
 
-  //Adds event listeners to the buttons
-  rock.addEventListener("click", function(){
-    userChoice = "rock";
-    compChoice = computerChoice();
-    playRound(userChoice, compChoice);
-  });
+  //Add logic and visible score
+  //PENDING
+  
+
+
+
+  function game(){
+    while (userScore != 5 || computerScore != 5){
+    const scoreboard = document.querySelector("p")
+    scoreboard.textContent = `You're score: ${userScore} vs Computer's score: ${computerScore}`
+    container.appendChild(scoreboard)
+
+
+//Adds event listeners to the buttons
+
+    rock.addEventListener("click", function(){
+      userChoice = "rock";
+      compChoice = computerChoice();
+      playRound(userChoice, compChoice);
+      game();
+    });
   paper.addEventListener("click", function(){
     userChoice = "paper";
     compChoice = computerChoice();
     playRound(userChoice, compChoice);
+    game();
   });
   scissors.addEventListener("click", function(){
-    userChoice = "scissors";
-    compChoice = computerChoice();
-    playRound(userChoice, compChoice);
-  });
-
-  //Add logic and visible score
-  //PENDING
-  function game(){
-    while userScore != 5 || computerScore != 5{
-    const scoreboard = document.querySelector("div")
-
+      userChoice = "scissors";
+      compChoice = computerChoice();
+      playRound(userChoice, compChoice);
+      game();
+    });
     }
   }
 }
