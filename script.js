@@ -1,64 +1,60 @@
-//What do we need to do?
+window.onload = function(){
 
-//Create an array of choices for the computer to choose from
+  //Create the variables
+  let userScore = 0;
+  let computerScore = 0;
+  const buttons = document.querySelectorAll("button")
 
-//Create a operation that will output the result of the play e.g if the computer chooses paper and we choose rock we lose
+ //Creates event listeners for each button
+  buttons.forEach(button =>{
+    button.addEventListener("click", function(){
+      playRound(button.value)
+    })
+  })
 
-//Create a function that will strat the game by prompting us to get the result
+  //Function for disabeling buttons when called
+  function disableButtons(){
+    buttons.forEach(elem =>{
+      elem.disabled = true;
+    })
+  }
 
-//Computer chooses a value from the array based on the arrays length and outputs the result
-
-
-
-
-function computerChoice(){
+  //Computer choice function
+  function computerChoice(){
     const choices = ["rock", "paper", "scissors"];
     const randomChoice = Math.floor(Math.random() * choices.length);
     return choices[randomChoice];
-}
+  }
 
-//Plays round
-function playRound(userChoice, compChoice){
-    //Prints the choices
-    console.log(`Your choice: ${userChoice}`)
-    console.log(`Computer choice: ${compChoice}`)
-
+  //Created game logic
+  function playRound (userChoice){
+    let compChoice = computerChoice();
+    let result = "";
     if (userChoice === compChoice){
-        console.log("Its a tie!") //If the choices are equal print tie
-        startGame(); //Starts the game again
+      result = "It's a tie!";
     }
-        else if (userChoice === "rock" && compChoice ==="scissors"){//Rock vs scissors
-            console.log("You Win!");
-        }
-        else if (userChoice === "scissors" && compChoice === "rock"){//scissors vs rock
-            console.log("You loose!");
-        }
-        else if (userChoice === "paper" && compChoice ==="rock"){//paper vs rock
-            console.log("You Win!");
-        }
-        else if (userChoice === "rock" && compChoice === "paper"){//rock vs paper
-            console.log("You loose!");
-        }
-        else if (userChoice === "scissors" && compChoice ==="paper"){//scissors vs paper
-            console.log("You Win!");
-        }
-        else if (userChoice === "paper" && compChoice === "scissors"){//paper vs scissors
-            console.log("You loose!");
-        }
+    else if((userChoice === "rock" && compChoice === "scissors")||
+      (userChoice === "paper"&& compChoice ==="rock")||
+      (userChoice === "scissors" && compChoice ==="paper")){
+        result = "You win! " + userChoice + " against " + compChoice
+        userScore += 1;
+          if (userScore === 5){
+          result = "Victory!, you won against the computer!"
+          disableButtons();
+      }
+    }
+    else{
+      computerScore += 1;
+      result = "You lost! " + userChoice + " against " + compChoice
+        if(computerScore === 5){
+        result = "Defeat! you lost against the computer"
+        disableButtons();
+      }
     }
 
-//Starts game
-
-function startGame(){
-    const userChoice = prompt("Write down you're choice:");//Prompts user for input
-    const compChoice = computerChoice();//Assigns constant to the result of the function
-    const result = playRound(userChoice, compChoice) //Gets the result of the round
-     //Outputs the result of the round
+    //Append the results and scores
+    document.getElementById("result").innerHTML = result;
+    document.getElementById("userScore").innerHTML = `Player: ${userScore}`
+    document.getElementById("computerScore").innerHTML = `Computer: ${computerScore}`
+  }
 }
-
-startGame();
-
-
-//WORKING ON
-//Create ui for the game
-
